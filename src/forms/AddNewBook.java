@@ -24,8 +24,9 @@ public class AddNewBook extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-
-
+	private Controller control;
+	private JFrame parent;
+	private JFrame thisFrame;
 
 	/**
 	 * Launch the application.
@@ -35,12 +36,19 @@ public class AddNewBook extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddNewBook() {
+	public AddNewBook(JFrame parent) {
+		this.parent = parent;
+		control = Controller.getControl();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AddNewBook.class.getResource("/Icon/logo.jpg")));
 		setTitle("Add Book");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				parent.setVisible(true); thisFrame.dispose();
+			}
+		});
 		setBounds(100, 100, 518, 441);
 		getContentPane().setLayout(null);
+		thisFrame = this;
 
 		textField = new JTextField();
 		textField.setBounds(133, 26, 86, 20);
@@ -109,8 +117,8 @@ public class AddNewBook extends JFrame {
 		lblCategory.setBounds(52, 354, 71, 14);
 		getContentPane().add(lblCategory);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Art", "Science", "Religion", "History", "Geography"}));
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Art", "Science", "Religion", "History", "Geography"}));
 		comboBox.setBounds(133, 348, 86, 22);
 		getContentPane().add(comboBox);
 
@@ -134,6 +142,9 @@ public class AddNewBook extends JFrame {
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				control.addAuthor("'" + textField_7.getText() + "'");
+				lblNewLabel_1_1.setText(lblNewLabel_1_1.getText() + textField_7.getText());
+				textField_7.setText("");
 			}
 		});
 		btnNewButton.setBounds(375, 182, 89, 23);
@@ -142,10 +153,20 @@ public class AddNewBook extends JFrame {
 		JButton btnNewButton_1 = new JButton("Insert Book");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				control.setTable("Book");
+				control.addAtribute("'" + textField.getText() + "'");
+				control.addAtribute("'" + textField_1.getText() + "'");
+				control.addAtribute("'" + textField_2.getText() + "'");
+				control.addAtribute(textField_3.getText());
+				control.addAtribute("'" + comboBox.getItemAt(comboBox.getSelectedIndex()) + "'");
+				control.addAtribute("'" + textField_4.getText() + "'");
+				control.addAtribute(textField_5.getText());
+				control.addAtribute(textField_6.getText());
+				control.executeQuerry("insert");
 			}
 		});
 		btnNewButton_1.setBounds(403, 368, 89, 23);
 		getContentPane().add(btnNewButton_1);
-
+		setVisible(true);
 	}
 }
