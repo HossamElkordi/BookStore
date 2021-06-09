@@ -36,57 +36,57 @@ public class SearchForBooks extends JFrame {
 				parent.setVisible(true); thisFrame.dispose();
 			}
 		});
-		setBounds(100, 100, 518, 441);
+		setBounds(100, 100, 750, 441);
 		getContentPane().setLayout(null);
 		thisFrame = this;
 
 		textField = new JTextField();
-		textField.setBounds(10, 33, 86, 20);
+		textField.setBounds(10, 33, 207, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 
 		JCheckBox chckbxNewCheckBox = new JCheckBox("ISBN");
-		chckbxNewCheckBox.setBounds(109, 32, 97, 23);
+		chckbxNewCheckBox.setBounds(223, 33, 97, 23);
 		getContentPane().add(chckbxNewCheckBox);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(10, 61, 86, 20);
+		textField_1.setBounds(10, 61, 207, 20);
 		getContentPane().add(textField_1);
 
 		JCheckBox chckbxTitle = new JCheckBox("Title");
-		chckbxTitle.setBounds(109, 60, 97, 23);
+		chckbxTitle.setBounds(223, 61, 97, 23);
 		getContentPane().add(chckbxTitle);
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(10, 89, 86, 20);
+		textField_2.setBounds(10, 89, 207, 20);
 		getContentPane().add(textField_2);
 
 		JCheckBox chckbxPublisher = new JCheckBox("Publisher");
-		chckbxPublisher.setBounds(109, 88, 97, 23);
+		chckbxPublisher.setBounds(223, 89, 97, 23);
 		getContentPane().add(chckbxPublisher);
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(225, 34, 86, 20);
+		textField_3.setBounds(370, 34, 186, 20);
 		getContentPane().add(textField_3);
 
 		JCheckBox chckbxAuthor = new JCheckBox("Author");
-		chckbxAuthor.setBounds(324, 33, 97, 23);
+		chckbxAuthor.setBounds(569, 33, 97, 23);
 		getContentPane().add(chckbxAuthor);
 
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Art", "Science", "Religion", "History", "Geography"}));
-		comboBox.setBounds(225, 61, 86, 22);
+		comboBox.setBounds(370, 61, 186, 22);
 		getContentPane().add(comboBox);
 
 		JCheckBox chckbxNewCheckBox_3_1 = new JCheckBox("Category");
-		chckbxNewCheckBox_3_1.setBounds(324, 61, 97, 23);
+		chckbxNewCheckBox_3_1.setBounds(569, 61, 97, 23);
 		getContentPane().add(chckbxNewCheckBox_3_1);
 
 		JLabel lblNewLabel = new JLabel("Please Secelct Filters");
-		lblNewLabel.setBounds(194, 11, 114, 14);
+		lblNewLabel.setBounds(273, 3, 126, 23);
 		getContentPane().add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Search");
@@ -116,11 +116,11 @@ public class SearchForBooks extends JFrame {
 				setTableModel(rs);
 			}
 		});
-		btnNewButton.setBounds(225, 88, 86, 23);
+		btnNewButton.setBounds(370, 88, 186, 23);
 		getContentPane().add(btnNewButton);
 
 		JScrollPane tableScrollPane = new JScrollPane();
-		tableScrollPane.setBounds(0, 141, 502, 260);
+		tableScrollPane.setBounds(0, 141, 724, 260);
 		getContentPane().add(tableScrollPane);
 
 		model = new DefaultTableModel();

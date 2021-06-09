@@ -40,35 +40,35 @@ public class Modify extends JFrame {
 				parent.setVisible(true); thisFrame.dispose();
 			}
 		});
-		setBounds(100, 100, 518, 441);
+		setBounds(100, 100, 750, 441);
 		getContentPane().setLayout(null);
 		thisFrame = this;
 
 		textField = new JTextField();
-		textField.setBounds(10, 33, 86, 20);
+		textField.setBounds(10, 33, 204, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 
 		JCheckBox chckbxNewCheckBox = new JCheckBox("ISBN");
-		chckbxNewCheckBox.setBounds(109, 32, 97, 23);
+		chckbxNewCheckBox.setBounds(235, 33, 97, 23);
 		getContentPane().add(chckbxNewCheckBox);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(10, 61, 86, 20);
+		textField_1.setBounds(10, 61, 204, 20);
 		getContentPane().add(textField_1);
 
 		JCheckBox chckbxTitle = new JCheckBox("Title");
-		chckbxTitle.setBounds(109, 60, 97, 23);
+		chckbxTitle.setBounds(235, 61, 97, 23);
 		getContentPane().add(chckbxTitle);
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(120, 168, 86, 20);
+		textField_3.setBounds(368, 168, 86, 20);
 		getContentPane().add(textField_3);
 
 		JLabel lblNewLabel = new JLabel("Please Secelct Filters");
-		lblNewLabel.setBounds(194, 11, 114, 14);
+		lblNewLabel.setBounds(311, 12, 123, 20);
 		getContentPane().add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Search");
@@ -89,11 +89,11 @@ public class Modify extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(222, 88, 86, 23);
+		btnNewButton.setBounds(470, 88, 86, 23);
 		getContentPane().add(btnNewButton);
 
 		JLabel lblNewLabel_1 = new JLabel("Quantity");
-		lblNewLabel_1.setBounds(30, 174, 46, 14);
+		lblNewLabel_1.setBounds(219, 174, 105, 14);
 		getContentPane().add(lblNewLabel_1);
 
 		JButton btnSave = new JButton("Save");
@@ -109,7 +109,7 @@ public class Modify extends JFrame {
 				control.executeQuerry("update");
 			}
 		});
-		btnSave.setBounds(222, 167, 86, 23);
+		btnSave.setBounds(470, 167, 86, 23);
 		getContentPane().add(btnSave);
 		setVisible(true);
 	}

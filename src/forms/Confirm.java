@@ -30,7 +30,7 @@ public class Confirm extends JFrame {
 				parent.setVisible(true); thisFrame.dispose();
 			}
 		});
-		setBounds(100, 100, 518, 441);
+		setBounds(100, 100, 750, 441);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -38,12 +38,12 @@ public class Confirm extends JFrame {
 		thisFrame = this;
 
 		textField = new JTextField();
-		textField.setBounds(39, 58, 86, 20);
+		textField.setBounds(39, 58, 233, 22);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("ISBN");
-		lblNewLabel.setBounds(39, 35, 46, 14);
+		lblNewLabel.setBounds(39, 35, 86, 14);
 		contentPane.add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Search");
@@ -55,11 +55,11 @@ public class Confirm extends JFrame {
 				setTableModel(rs);
 			}
 		});
-		btnNewButton.setBounds(180, 57, 89, 23);
+		btnNewButton.setBounds(417, 35, 111, 32);
 		contentPane.add(btnNewButton);
 
 		JScrollPane tableScrollPane = new JScrollPane();
-		tableScrollPane.setBounds(10, 115, 482, 43);
+		tableScrollPane.setBounds(10, 115, 714, 43);
 		getContentPane().add(tableScrollPane);
 
 		model = new DefaultTableModel();
@@ -80,7 +80,7 @@ public class Confirm extends JFrame {
 				ResultSet rs = control.executeQuerry("delete");
 			}
 		});
-		btnNewButton_1.setBounds(180, 197, 89, 23);
+		btnNewButton_1.setBounds(180, 197, 134, 32);
 		contentPane.add(btnNewButton_1);
 		setVisible(true);
 	}
