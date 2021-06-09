@@ -24,7 +24,7 @@ public class UserOperationInterface extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(UserOperationInterface.class.getResource("/Icon/logo.jpg")));
 		setTitle("User Operations");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 518, 441);
+		setBounds(100, 100, 750, 441);
 		getContentPane().setLayout(null);
 		thisFram = this;
 
@@ -35,7 +35,7 @@ public class UserOperationInterface extends JFrame {
 				JFrame frame = new AddNewBook(thisFram);
 			}
 		});
-		btnNewButton.setBounds(187, 174, 128, 23);
+		btnNewButton.setBounds(267, 174, 214, 23);
 		getContentPane().add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Search Book");
@@ -45,7 +45,7 @@ public class UserOperationInterface extends JFrame {
 				JFrame frame = new SearchForBooks(thisFram);
 			}
 		});
-		btnNewButton_1.setBounds(187, 208, 128, 23);
+		btnNewButton_1.setBounds(267, 208, 214, 23);
 		getContentPane().add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("Confirm Order");
@@ -55,7 +55,7 @@ public class UserOperationInterface extends JFrame {
 				JFrame frame = new Confirm(thisFram);
 			}
 		});
-		btnNewButton_2.setBounds(187, 242, 128, 23);
+		btnNewButton_2.setBounds(267, 242, 214, 23);
 		getContentPane().add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Modify Book");
@@ -65,10 +65,10 @@ public class UserOperationInterface extends JFrame {
 				JFrame frame = new Modify(thisFram);
 			}
 		});
-		btnNewButton_3.setBounds(187, 276, 128, 23);
+		btnNewButton_3.setBounds(267, 276, 214, 23);
 		getContentPane().add(btnNewButton_3);
 		JPanel logo=new Logo();
-		logo.setLocation(206, 44);
+		logo.setLocation(322, 44);
 		logo.setSize(89, 88);
 		getContentPane().add(logo);
 		setVisible(true);
