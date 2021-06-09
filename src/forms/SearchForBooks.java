@@ -120,7 +120,7 @@ public class SearchForBooks extends JFrame {
 		getContentPane().add(btnNewButton);
 
 		JScrollPane tableScrollPane = new JScrollPane();
-		tableScrollPane.setBounds(0, 141, 724, 260);
+		tableScrollPane.setBounds(0, 141, 734, 260);
 		getContentPane().add(tableScrollPane);
 
 		model = new DefaultTableModel();
