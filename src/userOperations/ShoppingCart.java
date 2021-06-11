@@ -11,9 +11,9 @@ public class ShoppingCart {
         this.Cart = new ArrayList<>();
     }
 
-    public void AddToCart(String ISBN,int Quantity)
+    public void AddToCart(Book book)
     {
-        this.Cart.add(new Book(ISBN,Quantity));
+        this.Cart.add(book);
     }
 
     List<Book> Checkout()
