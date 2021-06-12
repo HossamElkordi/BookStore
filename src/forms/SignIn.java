@@ -1,8 +1,13 @@
 package forms;
 
+import userOperations.LogIn;
+import userOperations.ShoppingCart;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -62,6 +67,19 @@ public class SignIn extends JFrame {
 		JButton btnSignIn = new JButton("Sign In");
 		btnSignIn.setBounds(250, 190, 200, 30);
 		contentPane.add(btnSignIn);
+		btnSignIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				LogIn Person = new LogIn();
+				if(Person.CheckCredentials(textField.getText(),textField_1.getText()))
+				{
+					if(Person.getUserType().equals("Customer"))
+						new Customer(Person,new ShoppingCart());
+					else
+						new Manager(Person,new ShoppingCart());
+				}
+			}
+		});
 		
 		
 	}

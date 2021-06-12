@@ -76,4 +76,36 @@ public class LogIn{
     public String getUserType() {
         return UserType;
     }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public void setLName(String LName) {
+        this.LName = LName;
+    }
+
+    public void setFName(String FName) {
+        this.FName = FName;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        ShippingAddress = shippingAddress;
+    }
+
+    public void setUserType(String userType) {
+        UserType = userType;
+    }
 }

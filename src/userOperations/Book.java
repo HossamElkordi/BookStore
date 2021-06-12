@@ -9,7 +9,7 @@ public class Book {
         private final String Category;
         private final String Price;
 
-        Book(String ISBN, int Quantity, String title, String publisher, String publicationYear, String category, String price)
+        public Book(String ISBN, int Quantity, String title, String publisher, String publicationYear, String category, String price)
         {
             this.ISBN=ISBN;
             this.Quantity=Quantity;

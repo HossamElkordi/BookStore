@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import basicInterfaces.Homepage;
+import userOperations.LogIn;
+import userOperations.ShoppingCart;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -18,7 +20,8 @@ public class Customer extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame thisFrame;
-
+	private LogIn User;
+	private ShoppingCart MyCart;
 	/**
 	 * Launch the application.
 	 */
@@ -26,7 +29,7 @@ public class Customer extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Customer frame = new Customer();
+					Customer frame = new Customer(new LogIn(),new ShoppingCart());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,8 +41,9 @@ public class Customer extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Customer() {
-		
+	public Customer(LogIn User, ShoppingCart MyCart) {
+		this.User=User;
+		this.MyCart=MyCart;
 		thisFrame = this;
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Customer.class.getResource("/Icon/logo.jpg")));
@@ -55,7 +59,7 @@ public class Customer extends JFrame {
 		btnStartShopping.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new Shopping(thisFrame);
+				new Shopping(thisFrame,MyCart);
 			}
 		});
 		btnStartShopping.setBounds(282, 125, 186, 32);
@@ -65,7 +69,7 @@ public class Customer extends JFrame {
 		btnEditInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new EditInformation(thisFrame);
+				new EditInformation(thisFrame,User);
 			}
 		});
 		btnEditInformation.setBounds(282, 175, 186, 32);

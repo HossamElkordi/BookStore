@@ -1,8 +1,12 @@
 package forms;
 
+import userOperations.LogIn;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,7 +31,7 @@ public class EditInformation extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditInformation(JFrame parent) {
+	public EditInformation(JFrame parent, LogIn User) {
 		
 		thisFrame = this;
 		setVisible(true);
@@ -56,6 +60,7 @@ public class EditInformation extends JFrame {
 		txtUsername.setBounds(150, 32, 200, 25);
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
+		txtUsername.setEditable(false);
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds(30, 72, 100, 25);
@@ -120,6 +125,11 @@ public class EditInformation extends JFrame {
 		btnSave = new JButton("Save");
 		btnSave.setBounds(164, 327, 186, 32);
 		contentPane.add(btnSave);
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 	}
 
 }

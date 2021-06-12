@@ -28,11 +28,11 @@ public class ShoppingCart {
             temp.add("ISBN="+book.getISBN());
             operation.execute(temp);
         }
-        remove();
+        clear();
         return CopyCart;
     }
 
-    private void remove()
+    private void clear()
     {
         this.Cart=new ArrayList<>();
     }

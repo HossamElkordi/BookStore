@@ -23,13 +23,13 @@ public class ShoppingCart extends JFrame {
 	private JTable table;
 	private DefaultTableModel model;
 	private JFrame thisFrame;
-
+	private userOperations.ShoppingCart MyCart;
 
 	/**
 	 * Create the frame.
 	 */
-	public ShoppingCart(JFrame parent) {
-		
+	public ShoppingCart(JFrame parent, userOperations.ShoppingCart MyCart) {
+		this.MyCart = MyCart;
 		thisFrame = this;
 		setVisible(true);
 		
