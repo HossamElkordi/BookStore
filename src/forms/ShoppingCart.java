@@ -1,5 +1,7 @@
 package forms;
 
+import userOperations.Book;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
@@ -57,41 +59,55 @@ public class ShoppingCart extends JFrame {
 		table = new JTable();
 		table.setModel(model);
 		scrollPane.setViewportView(table);
-		
+
 		JButton btnCheckout = new JButton("Checkout");
 		btnCheckout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MyCart.Checkout();
 			}
 		});
 		btnCheckout.setBounds(500, 340, 186, 32);
 		contentPane.add(btnCheckout);
 		
-		JLabel lblTotalPrice = new JLabel("Total Price: $100");
+		JLabel lblTotalPrice = new JLabel("Total Price: $"+getTotal());
 		lblTotalPrice.setBounds(350, 340, 186, 32);
 		contentPane.add(lblTotalPrice);
 		
 		JButton btnRemoveFromCart = new JButton("Remove from Cart");
+		btnRemoveFromCart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyCart.getCart().remove(table.getSelectedRow());
+			}
+		});
 		btnRemoveFromCart.setBounds(40, 340, 186, 32);
 		contentPane.add(btnRemoveFromCart);
 		
 		JLabel lblShoppingCart = new JLabel("Shopping Cart");
 		lblShoppingCart.setBounds(300, 10, 186, 32);
 		contentPane.add(lblShoppingCart);
+
 	}
-	
+
+	private String getTotal()
+	{
+		long total = 0;
+		for(Book book: MyCart.getCart())
+			total+=book.getQuantity()*Integer.parseInt(book.getPrice());
+		return String.valueOf(total);
+	}
 	private void setTableModel(ResultSet rs) {
 		model.setRowCount(0);
 		String[] ids = {"Title", "Publication Year","Category",  "Price", "Quantity", "Total Price"};
 		model.setColumnIdentifiers(ids);
 		
-		for (int i = 0; i < 10; i++) {
+		for (Book book:MyCart.getCart()) {
 			Object[] data = new Object[6];
-			data[0] = "Harry Potter";
-			data[1] = "2020";
-			data[2] = "Novel";
-			data[3] = "$20";
-			data[4] = "4";
-			data[5] = "$80";
+			data[0] = book.getTitle();
+			data[1] = book.getPublicationYear();
+			data[2] = book.getCategory();
+			data[3] = book.getPrice();
+			data[4] = book.getQuantity();
+			data[5] = Integer.parseInt(book.getCategory())*book.getQuantity();
 			model.addRow(data);
 		}
 	}

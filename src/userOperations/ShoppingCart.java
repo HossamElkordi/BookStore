@@ -16,11 +16,14 @@ public class ShoppingCart {
         this.Cart.add(book);
     }
 
-    List<Book> Checkout()
+    public List<Book> getCart() {
+        return Cart;
+    }
+
+    public void Checkout()
     {
-        List<Book> CopyCart = new ArrayList<>(this.Cart);
         Operation operation = new ModifyExistingBook();
-        for(Book book: CopyCart)
+        for(Book book: this.Cart)
         {
             ArrayList<String> temp = new ArrayList<>();
             temp.add("BOOK");
@@ -29,7 +32,6 @@ public class ShoppingCart {
             operation.execute(temp);
         }
         clear();
-        return CopyCart;
     }
 
     private void clear()
