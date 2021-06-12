@@ -29,30 +29,28 @@ public class Shopping extends JFrame {
 	private JTextField textField_3;
 	private JTable table;
 	private DefaultTableModel model;
+	private JFrame thisFrame;
 
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Shopping frame = new Shopping();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Shopping() {
+	public Shopping(JFrame parent) {
+		
+		thisFrame = this;
+		setVisible(true);
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Shopping.class.getResource("/Icon/logo.jpg")));
 		setTitle("Shopping");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				parent.setVisible(true); thisFrame.dispose();
+			}
+		});
+		
+		setTitle("Shopping");
 		setBounds(100, 100, 750, 441);
 		getContentPane().setLayout(null);
 
@@ -129,6 +127,12 @@ public class Shopping extends JFrame {
 		getContentPane().add(btnAddToCart);
 		
 		JButton btnViewCart = new JButton("View Cart");
+		btnViewCart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new ShoppingCart(thisFrame);
+			}
+		});
 		btnViewCart.setBounds(130, 359, 186, 32);
 		getContentPane().add(btnViewCart);
 		setVisible(true);

@@ -2,6 +2,7 @@ package forms;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -28,28 +29,25 @@ public class PromoteCustomers extends JFrame {
 	private JTextField textField_3;
 	private JTable table;
 	private DefaultTableModel model;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PromoteCustomers frame = new PromoteCustomers();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JFrame thisFrame;
 
 	/**
 	 * Create the frame.
 	 */
-	public PromoteCustomers() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public PromoteCustomers(JFrame parent) {
+		
+		thisFrame = this;
+		setVisible(true);
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PromoteCustomers.class.getResource("/Icon/logo.jpg")));
+		setTitle("Promote Customers");
+		
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				parent.setVisible(true); thisFrame.dispose();
+			}
+		});
+		
 		setBounds(100, 100, 750, 441);
 		getContentPane().setLayout(null);
 

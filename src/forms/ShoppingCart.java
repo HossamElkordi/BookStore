@@ -2,6 +2,7 @@ package forms;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,28 +22,26 @@ public class ShoppingCart extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel model;
+	private JFrame thisFrame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ShoppingCart frame = new ShoppingCart();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public ShoppingCart() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public ShoppingCart(JFrame parent) {
+		
+		thisFrame = this;
+		setVisible(true);
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ShoppingCart.class.getResource("/Icon/logo.jpg")));
+		setTitle("Shopping Cart");
+		
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				parent.setVisible(true); thisFrame.dispose();
+			}
+		});
+		
 		setBounds(100, 100, 750, 441);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

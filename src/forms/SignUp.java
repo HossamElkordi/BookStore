@@ -4,14 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
 
-public class EditInformation extends JFrame {
+public class SignUp extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
@@ -23,17 +23,18 @@ public class EditInformation extends JFrame {
 	private JTextField textAddress;
 	private JButton btnSave;
 	private JFrame thisFrame;
-	
+
+
 	/**
 	 * Create the frame.
 	 */
-	public EditInformation(JFrame parent) {
+	public SignUp(JFrame parent) {
 		
 		thisFrame = this;
 		setVisible(true);
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(EditInformation.class.getResource("/Icon/logo.jpg")));
-		setTitle("Edit Information");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SignUp.class.getResource("/Icon/logo.jpg")));
+		setTitle("Sign Up");
 		
 		addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -48,77 +49,70 @@ public class EditInformation extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblUserName = new JLabel("Username");
-		lblUserName.setBounds(30, 32, 100, 25);
+		lblUserName.setBounds(140, 32, 100, 25);
 		contentPane.add(lblUserName);
 		
 		txtUsername = new JTextField();
-		txtUsername.setText("YoussefSherif98");
-		txtUsername.setBounds(150, 32, 200, 25);
+		txtUsername.setBounds(250, 32, 200, 25);
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(30, 72, 100, 25);
+		lblPassword.setBounds(140, 72, 100, 25);
 		contentPane.add(lblPassword);
 		
 		textPassword = new JTextField();
-		textPassword.setText("********");
-		textPassword.setBounds(150, 72, 200, 25);
+		textPassword.setBounds(250, 72, 200, 25);
 		contentPane.add(textPassword);
 		textPassword.setColumns(10);
 		
 		JLabel lblFirstname = new JLabel("First Name");
-		lblFirstname.setBounds(30, 112, 100, 25);
+		lblFirstname.setBounds(140, 112, 100, 25);
 		contentPane.add(lblFirstname);
 		
 		textFirstname = new JTextField();
-		textFirstname.setText("Youssef");
-		textFirstname.setBounds(150, 112, 200, 25);
+		textFirstname.setBounds(250, 112, 200, 25);
 		contentPane.add(textFirstname);
 		textFirstname.setColumns(10);
 		
 		JLabel lblLastname = new JLabel("Last Name");
-		lblLastname.setBounds(30, 152, 100, 25);
+		lblLastname.setBounds(140, 152, 100, 25);
 		contentPane.add(lblLastname);
 		
 		textLastname = new JTextField();
-		textLastname.setText("Kamel");
-		textLastname.setBounds(150, 152, 200, 25);
+		textLastname.setBounds(250, 152, 200, 25);
 		contentPane.add(textLastname);
 		textLastname.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email Address");
-		lblEmail.setBounds(30, 192, 100, 25);
+		lblEmail.setBounds(140, 192, 100, 25);
 		contentPane.add(lblEmail);
 		
 		textEmail = new JTextField();
-		textEmail.setText("youssef.sherif111998@gmail.com");
-		textEmail.setBounds(150, 192, 200, 25);
+		textEmail.setBounds(250, 192, 200, 25);
 		contentPane.add(textEmail);
 		textEmail.setColumns(10);
 		
 		JLabel lblPhone = new JLabel("Phone Number");
-		lblPhone.setBounds(30, 232, 100, 25);
+		lblPhone.setBounds(140, 232, 100, 25);
 		contentPane.add(lblPhone);
 		
 		textPhone = new JTextField();
-		textPhone.setText("01270563512");
-		textPhone.setBounds(150, 232, 200, 25);
+		textPhone.setBounds(250, 232, 200, 25);
 		contentPane.add(textPhone);
 		textPhone.setColumns(10);
 		
 		JLabel lblAddress = new JLabel("Shipping Address");
-		lblAddress.setBounds(30, 272, 100, 25);
+		lblAddress.setBounds(140, 272, 100, 25);
 		contentPane.add(lblAddress);
 		
 		textAddress = new JTextField();
-		textAddress.setText("56 ElDobat Buildings, Moustafa Kamel");
-		textAddress.setBounds(150, 272, 200, 25);
+		textAddress.setBounds(250, 272, 200, 25);
 		contentPane.add(textAddress);
 		textAddress.setColumns(10);
 		
-		btnSave = new JButton("Save");
-		btnSave.setBounds(164, 327, 186, 32);
+		btnSave = new JButton("Sign Up");
+		btnSave.setBounds(250, 327, 200, 30);
 		contentPane.add(btnSave);
 	}
 
