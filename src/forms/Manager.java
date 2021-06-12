@@ -73,6 +73,12 @@ public class Manager extends JFrame {
 		contentPane.add(btnModifyBooks);
 		
 		JButton btnPlaceOrders = new JButton("Place orders for books");
+		btnPlaceOrders.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new PlaceOrder(thisFrame);
+			}
+		});
 		btnPlaceOrders.setBounds(267, 110, 214, 23);
 		contentPane.add(btnPlaceOrders);
 		
