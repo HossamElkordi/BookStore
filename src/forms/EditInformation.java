@@ -1,12 +1,15 @@
 package forms;
 
 import userOperations.LogIn;
+import userOperations.ModifyExistingBook;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -56,7 +59,7 @@ public class EditInformation extends JFrame {
 		contentPane.add(lblUserName);
 		
 		txtUsername = new JTextField();
-		txtUsername.setText("YoussefSherif98");
+		txtUsername.setText(User.getUserName());
 		txtUsername.setBounds(150, 32, 200, 25);
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
@@ -67,7 +70,7 @@ public class EditInformation extends JFrame {
 		contentPane.add(lblPassword);
 		
 		textPassword = new JTextField();
-		textPassword.setText("********");
+		textPassword.setText(User.getPassword());
 		textPassword.setBounds(150, 72, 200, 25);
 		contentPane.add(textPassword);
 		textPassword.setColumns(10);
@@ -77,7 +80,7 @@ public class EditInformation extends JFrame {
 		contentPane.add(lblFirstname);
 		
 		textFirstname = new JTextField();
-		textFirstname.setText("Youssef");
+		textFirstname.setText(User.getFName());
 		textFirstname.setBounds(150, 112, 200, 25);
 		contentPane.add(textFirstname);
 		textFirstname.setColumns(10);
@@ -87,7 +90,7 @@ public class EditInformation extends JFrame {
 		contentPane.add(lblLastname);
 		
 		textLastname = new JTextField();
-		textLastname.setText("Kamel");
+		textLastname.setText(User.getLName());
 		textLastname.setBounds(150, 152, 200, 25);
 		contentPane.add(textLastname);
 		textLastname.setColumns(10);
@@ -97,7 +100,7 @@ public class EditInformation extends JFrame {
 		contentPane.add(lblEmail);
 		
 		textEmail = new JTextField();
-		textEmail.setText("youssef.sherif111998@gmail.com");
+		textEmail.setText(User.getEmail());
 		textEmail.setBounds(150, 192, 200, 25);
 		contentPane.add(textEmail);
 		textEmail.setColumns(10);
@@ -107,7 +110,7 @@ public class EditInformation extends JFrame {
 		contentPane.add(lblPhone);
 		
 		textPhone = new JTextField();
-		textPhone.setText("01270563512");
+		textPhone.setText(User.getPhone());
 		textPhone.setBounds(150, 232, 200, 25);
 		contentPane.add(textPhone);
 		textPhone.setColumns(10);
@@ -117,7 +120,7 @@ public class EditInformation extends JFrame {
 		contentPane.add(lblAddress);
 		
 		textAddress = new JTextField();
-		textAddress.setText("56 ElDobat Buildings, Moustafa Kamel");
+		textAddress.setText(User.getShippingAddress());
 		textAddress.setBounds(150, 272, 200, 25);
 		contentPane.add(textAddress);
 		textAddress.setColumns(10);
@@ -127,6 +130,49 @@ public class EditInformation extends JFrame {
 		contentPane.add(btnSave);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ModifyExistingBook modified = new ModifyExistingBook();
+				if(textPassword.getText().compareTo(User.getPassword()) != 0){
+					ArrayList<String> list = new ArrayList<>(Arrays.asList("User",
+							"Password=" + textPassword.getText(),
+							"UserName=" + User.getUserName()));
+					modified.execute(list);
+					User.setPassword(textPassword.getText());
+				}
+				if(textFirstname.getText().compareTo(User.getFName()) != 0){
+					ArrayList<String> list = new ArrayList<>(Arrays.asList("User",
+							"FName=" + textFirstname.getText(),
+							"UserName=" + User.getUserName()));
+					modified.execute(list);
+					User.setFName(textFirstname.getText());
+				}
+				if(textLastname.getText().compareTo(User.getLName()) != 0){
+					ArrayList<String> list = new ArrayList<>(Arrays.asList("User",
+							"LName=" + textLastname.getText(),
+							"UserName=" + User.getUserName()));
+					modified.execute(list);
+					User.setLName(textLastname.getText());
+				}
+				if(textEmail.getText().compareTo(User.getEmail()) != 0){
+					ArrayList<String> list = new ArrayList<>(Arrays.asList("User",
+							"Email=" + textEmail.getText(),
+							"UserName=" + User.getUserName()));
+					modified.execute(list);
+					User.setEmail(textEmail.getText());
+				}
+				if(textPhone.getText().compareTo(User.getPhone()) != 0){
+					ArrayList<String> list = new ArrayList<>(Arrays.asList("User",
+							"Phone Number=" + textPhone.getText(),
+							"UserName=" + User.getUserName()));
+					modified.execute(list);
+					User.setPhone(textPhone.getText());
+				}
+				if(textAddress.getText().compareTo(User.getShippingAddress()) != 0){
+					ArrayList<String> list = new ArrayList<>(Arrays.asList("User",
+							"Shipping Address=" + textAddress.getText(),
+							"UserName=" + User.getUserName()));
+					modified.execute(list);
+					User.setShippingAddress(textAddress.getText());
+				}
 
 			}
 		});
