@@ -132,6 +132,7 @@ public class SearchForBooks extends JFrame {
 		setTableModel(null);
 		table = new JTable();
 		table.setModel(model);
+		table.setEnabled(false);
 		tableScrollPane.setViewportView(table);
 
 //		table = new JTable();

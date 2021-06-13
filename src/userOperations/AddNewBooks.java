@@ -17,7 +17,6 @@ public class AddNewBooks implements Operation{
                 stat += ("," + input.get(i));
             }
             stat += ")";
-            System.out.println(stat);
             Statement statement =  connection.prepareStatement(stat, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             statement.executeUpdate(stat);
 
