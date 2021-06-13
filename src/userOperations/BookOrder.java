@@ -11,11 +11,11 @@ public class BookOrder implements  Operation{
             Connection connection = DriverManager.getConnection(dbLink, user, password);
             String stat = "Insert into Orders values ( "+"'" + input.get(0) + "'" +", "+"'" + input.get(1)+"'"+" )";
             Statement statement =  connection.prepareStatement(stat, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            resultSet = statement.executeQuery(stat);
+            statement.executeUpdate(stat);
             }
         catch (Exception e){
             e.printStackTrace();
         }
-        return resultSet;
+        return null;
     }
 }
