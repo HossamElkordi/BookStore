@@ -109,6 +109,27 @@ CREATE TABLE IF NOT EXISTS `BookStore`.`User` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `BookStore`.`Sales`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `BookStore`.`Sales` ;
+
+CREATE TABLE IF NOT EXISTS `BookStore`.`Sales` (
+  `UserName` VARCHAR(45) NOT NULL,
+  `ISBN` VARCHAR(13) NOT NULL,
+  `Date` DATE NOT NULL,
+  `Payment` REAL UNSIGNED NOT NULL,
+
+  PRIMARY KEY (`UserName`, `ISBN`),
+  CONSTRAINT `fk1` FOREIGN KEY (`ISBN`) REFERENCES `BookStore`.`Book` (`ISBN`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk2` FOREIGN KEY (`UserName`) REFERENCES `BookStore`.`User` (`UserName`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
