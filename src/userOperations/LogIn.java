@@ -45,6 +45,22 @@ public class LogIn{
         }
         return false;
     }
+
+    public void Register(String text, String textPasswordText, String textFirstnameText, String textLastnameText, String textEmailText, String textPhoneText, String textAddressText)
+    {
+        Operation operation = new AddNewBooks();
+        ArrayList<String> arguments = new ArrayList<>();
+        arguments.add("User");
+        arguments.add(text);
+        arguments.add(textPasswordText);
+        arguments.add(textLastnameText);
+        arguments.add(textFirstnameText);
+        arguments.add(textEmailText);
+        arguments.add(textPhoneText);
+        arguments.add(textAddressText);
+        operation.execute(arguments);
+    }
+
     public String getUserName() {
         return UserName;
     }

@@ -1,8 +1,13 @@
 package forms;
 
+import userOperations.LogIn;
+import userOperations.ShoppingCart;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -114,6 +119,16 @@ public class SignUp extends JFrame {
 		btnSave = new JButton("Sign Up");
 		btnSave.setBounds(250, 327, 200, 30);
 		contentPane.add(btnSave);
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				LogIn Person = new LogIn();
+				Person.Register(txtUsername.getText(),textPassword.getText(),textFirstname.getText(),textLastname.getText(),textEmail.getText(),textPhone.getText(),textAddress.getText());
+				if(Person.CheckCredentials(txtUsername.getText(),textPassword.getText()))
+					new Customer(Person,new userOperations.ShoppingCart());
+			}
+		});
 	}
+
 
 }
