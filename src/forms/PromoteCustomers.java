@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -21,6 +22,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import userOperations.PromoteUser;
+
 public class PromoteCustomers extends JFrame {
 
 	private JPanel contentPane;
@@ -33,6 +36,8 @@ public class PromoteCustomers extends JFrame {
 	private JFrame thisFrame;
 	private Controller control;
 	private ResultSet rs;
+	private ArrayList<String> Usernames;
+	private PromoteUser pu;
 
 	/**
 	 * Create the frame.
@@ -44,6 +49,7 @@ public class PromoteCustomers extends JFrame {
 
 		control = Controller.getControl();
 		rs = null;
+		Usernames = new ArrayList<>();
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PromoteCustomers.class.getResource("/Icon/logo.jpg")));
 		setTitle("Promote Customers");
@@ -141,6 +147,15 @@ public class PromoteCustomers extends JFrame {
 		tableScrollPane.setViewportView(table);
 		
 		JButton btnPromote = new JButton("Promote");
+		btnPromote.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				assert(rs != null);
+				pu = new PromoteUser();
+				pu.execute(Usernames);
+			}
+		}
+		);
 		btnPromote.setBounds(273, 355, 126, 23);
 		getContentPane().add(btnPromote);
 
@@ -148,21 +163,23 @@ public class PromoteCustomers extends JFrame {
 	}
 	
 	private void setTableModel(ResultSet rs) throws SQLException {
-			model.setRowCount(0);
-			String[] ids = {"Username", "FName", "LName", "Email","Phone Number", "Shipping Address"};
-			model.setColumnIdentifiers(ids);
-			while(rs.next()){
-				Object[] data = new Object[6];
-				for (int i = 0; i < 6; i++) {
-					data[0] = rs.getString(ids[0]);
-					data[1] = rs.getString(ids[1]);
-					data[2] = rs.getString(ids[2]);
-					data[3] = rs.getString(ids[3]);
-					data[4] = rs.getString(ids[4]);
-					data[5] = rs.getString(ids[5]);
-				}
-				model.addRow(data);
+		assert(rs != null);
+		model.setRowCount(0);
+		String[] ids = {"Username", "FName", "LName", "Email","Phone Number", "Shipping Address"};
+		model.setColumnIdentifiers(ids);
+		while(rs.next()){
+			Object[] data = new Object[6];
+			for (int i = 0; i < 6; i++) {
+				data[0] = rs.getString("UserName");
+				data[1] = rs.getString(ids[1]);
+				data[2] = rs.getString(ids[2]);
+				data[3] = rs.getString(ids[3]);
+				data[4] = rs.getString(ids[4]);
+				data[5] = rs.getString(ids[5]);
 			}
+			model.addRow(data);
+			Usernames.add(rs.getString("UserName"));
+		}
 	}
 
 }

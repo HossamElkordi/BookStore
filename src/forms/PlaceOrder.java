@@ -136,7 +136,7 @@ public class PlaceOrder extends JFrame {
 
 	private void setTableModel(ResultSet r) throws SQLException {
 		if(r == null){
-			System.out.println("r is null");
+			System.out.println("Result Set is null");
 			return;
 		}
 		model.setRowCount(0);
