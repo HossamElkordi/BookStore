@@ -81,7 +81,7 @@ public class PlaceOrder extends JFrame {
 				ArrayList<String> list = new ArrayList<>();
 				list.add("*");
 				list.add("Book");
-				list.add("ISBN = "+textField.getText());
+				list.add("ISBN = '"+textField.getText()+"'");
 				ISBN_fromInput = textField.getText();
 				rs = sb.execute(list);
 				try {
