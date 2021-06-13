@@ -67,7 +67,7 @@ public class Modify extends JFrame {
 		textField_3.setBounds(368, 168, 86, 20);
 		getContentPane().add(textField_3);
 
-		JLabel lblNewLabel = new JLabel("Please Secelct Filters");
+		JLabel lblNewLabel = new JLabel("Please Select Filters");
 		lblNewLabel.setBounds(311, 12, 123, 20);
 		getContentPane().add(lblNewLabel);
 
@@ -83,7 +83,7 @@ public class Modify extends JFrame {
 				ResultSet rs = control.executeQuerry("search");
 				try {
 					rs.next();
-					textField_3.setText("" + Integer.parseInt(rs.getString("Quantity")));
+					textField_3.setText(rs.getString("Quantity"));
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}

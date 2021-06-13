@@ -85,6 +85,7 @@ public class PlaceOrder extends JFrame {
 				ISBN_fromInput = textField.getText();
 				rs = sb.execute(list);
 				try {
+					rs.next();
 					numOfBooks = Integer.parseInt(rs.getString("Quantity"));
 					setTableModel(rs);
 				} catch (SQLException throwables) {
@@ -103,6 +104,7 @@ public class PlaceOrder extends JFrame {
 		//setTableModel(rs);
 		table = new JTable();
 		table.setModel(model);
+		table.setEnabled(false);
 		tableScrollPane.setViewportView(table);
 
 		JButton btnNewButton_1 = new JButton("Confirm");
@@ -142,10 +144,9 @@ public class PlaceOrder extends JFrame {
 		String[] ids = {"ISBN", "Title", "Publisher", "Publication Year","Category",  "Selling Price", "Quantity", "Min Quantity"};
 		model.setColumnIdentifiers(ids);
 		Object[] data = new Object[8];
-		if(r.next()){
-			for(int i = 0; i < 8; i++){
-				data[i] = r.getString(ids[i]);
-			}
+		for(int i = 0; i < 8; i++){
+			if(i != 7) data[i] = r.getString(ids[i]);
+			else data[i] = r.getString("Threshold");
 		}
 		model.addRow(data);
 	}
