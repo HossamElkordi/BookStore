@@ -8,6 +8,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -71,12 +72,16 @@ public class SignIn extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				LogIn Person = new LogIn();
-				if(Person.CheckCredentials(textField.getText(),textField_1.getText()))
-				{
-					if(Person.getUserType().equals("Customer"))
-						new Customer(Person,new ShoppingCart());
-					else
-						new Manager(Person,new ShoppingCart());
+				try {
+					if(Person.CheckCredentials(textField.getText(),textField_1.getText()))
+					{
+						if(Person.getUserType().equals("Customer"))
+							new Customer(Person,new ShoppingCart());
+						else
+							new Manager(Person,new ShoppingCart());
+					}
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
 				}
 			}
 		});

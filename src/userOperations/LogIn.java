@@ -15,8 +15,7 @@ public class LogIn{
     private String ShippingAddress;
     private String UserType;
 
-    public boolean CheckCredentials(String UserName, String Password)
-    {
+    public boolean CheckCredentials(String UserName, String Password) throws SQLException {
         Operation operation = new SearchForBooks();
         ArrayList<String> arguments = new ArrayList<>();
         arguments.add("*");
@@ -46,8 +45,7 @@ public class LogIn{
         return false;
     }
 
-    public void Register(String text, String textPasswordText, String textFirstnameText, String textLastnameText, String textEmailText, String textPhoneText, String textAddressText)
-    {
+    public void Register(String text, String textPasswordText, String textFirstnameText, String textLastnameText, String textEmailText, String textPhoneText, String textAddressText) throws SQLException {
         Operation operation = new AddNewBooks();
         ArrayList<String> arguments = new ArrayList<>();
         arguments.add("User");

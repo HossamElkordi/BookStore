@@ -4,6 +4,7 @@ import userOperations.*;
 import userOperations.SearchForBooks;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Controller {
@@ -50,7 +51,7 @@ public class Controller {
         this.authors.add(author);
     }
 
-    public ResultSet executeQuerry(String type){
+    public ResultSet executeQuerry(String type) throws SQLException {
         ResultSet rs = null;
         switch (type) {
             case "search" -> {

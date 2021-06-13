@@ -131,15 +131,14 @@ public class PlaceOrder extends JFrame {
 		contentPane.add(lblQuantity);
 		setVisible(true);
 	}
-	
-	// SHOULD BE CHANGED
+
 	private void setTableModel(ResultSet r) throws SQLException {
 		if(r == null){
 			System.out.println("r is null");
 			return;
 		}
 		model.setRowCount(0);
-		String[] ids = {"ISBN", "Title", "Publisher", "Publication Year","Category",  "Selling Price", "Quantity", "Min Quantity"};
+		String[] ids = {"ISBN", "Title", "Publisher", "Publication Year","Category",  "Selling Price", "Quantity", "Threshold"};
 		model.setColumnIdentifiers(ids);
 		Object[] data = new Object[8];
 		if(r.next()){

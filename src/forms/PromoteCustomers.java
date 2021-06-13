@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -30,6 +31,8 @@ public class PromoteCustomers extends JFrame {
 	private JTable table;
 	private DefaultTableModel model;
 	private JFrame thisFrame;
+	private Controller control;
+	private ResultSet rs;
 
 	/**
 	 * Create the frame.
@@ -38,7 +41,10 @@ public class PromoteCustomers extends JFrame {
 		
 		thisFrame = this;
 		setVisible(true);
-		
+
+		control = Controller.getControl();
+		rs = null;
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PromoteCustomers.class.getResource("/Icon/logo.jpg")));
 		setTitle("Promote Customers");
 		
@@ -94,8 +100,31 @@ public class PromoteCustomers extends JFrame {
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ResultSet rs = null;
-				
+				control.setTable("User");
+				if(chckbxNewCheckBox.isSelected()) control.setCondition("UserName='" + textField.getText() + "'");
+				if(chckbxTitle.isSelected()) {
+					if(control.getCondition().isEmpty()) control.setCondition("FName='" + textField_1.getText() + "'");
+					else control.setCondition(control.getCondition() + " and FName='" + textField_1.getText() + "'");
+				}
+				if(chckbxPublisher.isSelected()) {
+					if(control.getCondition().isEmpty()) control.setCondition("LName='" + textField_2.getText() + "'");
+					else control.setCondition(control.getCondition() + " and LName='" + textField_2.getText() + "'");
+				}
+				if(chckbxNewCheckBox_3_1.isSelected()) {
+					if(control.getCondition().isEmpty()) control.setCondition("Email='" + textField_3.getText() + "'");
+					else control.setCondition(control.getCondition() + " and Email='" + textField_3.getText() + "'");
+				}
+				try {
+					rs = control.executeQuerry("search");
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
+				assert rs != null;
+				try {
+					setTableModel(rs);
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 			}
 		});
 		btnNewButton.setBounds(370, 88, 186, 23);
@@ -106,7 +135,7 @@ public class PromoteCustomers extends JFrame {
 		getContentPane().add(tableScrollPane);
 
 		model = new DefaultTableModel();
-		setTableModel(null);
+		//setTableModel(null);
 		table = new JTable();
 		table.setModel(model);
 		tableScrollPane.setViewportView(table);
@@ -118,18 +147,20 @@ public class PromoteCustomers extends JFrame {
 		setVisible(true);
 	}
 	
-	private void setTableModel(ResultSet rs) {
+	private void setTableModel(ResultSet rs) throws SQLException {
 			model.setRowCount(0);
-			String[] ids = {"Username", "First Name", "Last Name", "Email Address","Phone Number",  "Address"};
+			String[] ids = {"Username", "FName", "LName", "Email","Phone Number", "Shipping Address"};
 			model.setColumnIdentifiers(ids);
-			for (int i = 0; i < 50; i++) {
+			while(rs.next()){
 				Object[] data = new Object[6];
-				data[0] = "YoussefSherif98";
-				data[1] = "Youssef";
-				data[2] = "Kamel";
-				data[3] = "youssef.sherif111998@gmail.com";
-				data[4] = "01270563512";
-				data[5] = "56 ElDobat Buildings, Mostafa Kamel";
+				for (int i = 0; i < 6; i++) {
+					data[0] = rs.getString(ids[0]);
+					data[1] = rs.getString(ids[1]);
+					data[2] = rs.getString(ids[2]);
+					data[3] = rs.getString(ids[3]);
+					data[4] = rs.getString(ids[4]);
+					data[5] = rs.getString(ids[5]);
+				}
 				model.addRow(data);
 			}
 	}

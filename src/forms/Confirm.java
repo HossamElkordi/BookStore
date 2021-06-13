@@ -51,7 +51,12 @@ public class Confirm extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				control.setTable("Orders");
 				control.setCondition("ISBN = '" + textField.getText() + "'");
-				ResultSet rs = control.executeQuerry("search");
+				ResultSet rs = null;
+				try {
+					rs = control.executeQuerry("search");
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 				setTableModel(rs);
 			}
 		});
@@ -77,7 +82,11 @@ public class Confirm extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				control.setTable("Orders");
 				control.setCondition("ISBN = '" + textField.getText() + "'");
-				ResultSet rs = control.executeQuerry("delete");
+				try {
+					ResultSet rs = control.executeQuerry("delete");
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_1.setBounds(180, 197, 134, 32);

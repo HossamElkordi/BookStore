@@ -124,7 +124,11 @@ public class Shopping extends JFrame {
 					if(control.getCondition().isEmpty()) control.setCondition("Category='" + comboBox.getItemAt(comboBox.getSelectedIndex()) + "'");
 					else control.setCondition(control.getCondition() + " and Category='" + comboBox.getItemAt(comboBox.getSelectedIndex()) + "'");
 				}
-				rs = control.executeQuerry("search");
+				try {
+					rs = control.executeQuerry("search");
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 				setTableModel(rs);
 			}
 		});

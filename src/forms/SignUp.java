@@ -8,6 +8,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -123,9 +124,17 @@ public class SignUp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				LogIn Person = new LogIn();
-				Person.Register(txtUsername.getText(),textPassword.getText(),textFirstname.getText(),textLastname.getText(),textEmail.getText(),textPhone.getText(),textAddress.getText());
-				if(Person.CheckCredentials(txtUsername.getText(),textPassword.getText()))
-					new Customer(Person,new userOperations.ShoppingCart());
+				try {
+					Person.Register(txtUsername.getText(),textPassword.getText(),textFirstname.getText(),textLastname.getText(),textEmail.getText(),textPhone.getText(),textAddress.getText());
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
+				try {
+					if(Person.CheckCredentials(txtUsername.getText(),textPassword.getText()))
+						new Customer(Person,new ShoppingCart());
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 			}
 		});
 	}

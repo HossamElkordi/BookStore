@@ -14,6 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 public class AddNewBook extends JFrame {
 	private JTextField textField;
@@ -162,7 +163,11 @@ public class AddNewBook extends JFrame {
 				control.addAtribute("'" + textField_4.getText() + "'");
 				control.addAtribute(textField_5.getText());
 				control.addAtribute(textField_6.getText());
-				control.executeQuerry("insert");
+				try {
+					control.executeQuerry("insert");
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_1.setBounds(555, 356, 158, 32);

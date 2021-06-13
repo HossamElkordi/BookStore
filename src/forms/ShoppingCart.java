@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -63,7 +64,11 @@ public class ShoppingCart extends JFrame {
 		JButton btnCheckout = new JButton("Checkout");
 		btnCheckout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyCart.Checkout();
+				try {
+					MyCart.Checkout();
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 			}
 		});
 		btnCheckout.setBounds(500, 340, 186, 32);

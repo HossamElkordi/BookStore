@@ -80,7 +80,12 @@ public class Modify extends JFrame {
 					if(control.getCondition().isEmpty()) control.setCondition("Title='" + textField_1.getText() + "'");
 					else control.setCondition(control.getCondition() + " and Title='" + textField_1.getText() + "'");
 				}
-				ResultSet rs = control.executeQuerry("search");
+				ResultSet rs = null;
+				try {
+					rs = control.executeQuerry("search");
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 				try {
 					rs.next();
 					textField_3.setText("" + Integer.parseInt(rs.getString("Quantity")));
@@ -106,7 +111,11 @@ public class Modify extends JFrame {
 					if(control.getCondition().isEmpty()) control.setCondition("Title='" + textField_1.getText() + "'");
 					else control.setCondition(control.getCondition() + " and Title='" + textField_1.getText() + "'");
 				}
-				control.executeQuerry("update");
+				try {
+					control.executeQuerry("update");
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 			}
 		});
 		btnSave.setBounds(470, 167, 86, 23);
