@@ -23,6 +23,7 @@ public class SearchForBooks extends JFrame {
 	private JFrame parent;
 	private JFrame thisFrame;
 
+
 	/**
 	 * Create the frame.
 	 */

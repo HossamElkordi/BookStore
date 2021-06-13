@@ -6,6 +6,9 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +21,9 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import userOperations.SearchForBooks;
+import userOperations.BookOrder;
+
 import basicInterfaces.UserOperationInterface;
 
 public class PlaceOrder extends JFrame {
@@ -28,6 +34,11 @@ public class PlaceOrder extends JFrame {
 	private JTable table;
 	private DefaultTableModel model;
 	private JTextField textField_1;
+	private SearchForBooks sb;
+	private ResultSet rs;
+	private String ISBN_fromInput;
+	private BookOrder bo;
+	private int numOfBooks;
 
 	/**
 	 * Create the frame.
@@ -35,7 +46,10 @@ public class PlaceOrder extends JFrame {
 	public PlaceOrder(JFrame parent) {
 		thisFrame = this;
 		setVisible(true);
-		
+
+		numOfBooks = 0;
+		ISBN_fromInput = "";
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PlaceOrder.class.getResource("/Icon/logo.jpg")));
 		setTitle("Place Order");
 		
@@ -63,7 +77,19 @@ public class PlaceOrder extends JFrame {
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setTableModel(null); // SHOULD BE CHANGED
+				sb = new SearchForBooks();
+				ArrayList<String> list = new ArrayList<>();
+				list.add("*");
+				list.add("Book");
+				list.add("ISBN = "+textField.getText());
+				ISBN_fromInput = textField.getText();
+				rs = sb.execute(list);
+				try {
+					numOfBooks = Integer.parseInt(rs.getString("Quantity"));
+					setTableModel(rs);
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 			}
 		});
 		btnNewButton.setBounds(417, 48, 134, 32);
@@ -74,7 +100,7 @@ public class PlaceOrder extends JFrame {
 		getContentPane().add(tableScrollPane);
 
 		model = new DefaultTableModel();
-	//	setTableModel(null);
+		//setTableModel(rs);
 		table = new JTable();
 		table.setModel(model);
 		tableScrollPane.setViewportView(table);
@@ -82,7 +108,18 @@ public class PlaceOrder extends JFrame {
 		JButton btnNewButton_1 = new JButton("Confirm");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(numOfBooks < Integer.parseInt(textField_1.getText())){
+					throw new IllegalArgumentException("Invalid Quantity");
+				}
+				bo = new BookOrder();
+				ArrayList<String> list = new ArrayList<>();
+				list.add(ISBN_fromInput);
+				list.add(textField_1.getText());
+				try {
+					bo.execute(list);
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_1.setBounds(417, 239, 134, 32);
@@ -100,21 +137,21 @@ public class PlaceOrder extends JFrame {
 	}
 	
 	// SHOULD BE CHANGED
-	private void setTableModel(ResultSet rs) {
+	private void setTableModel(ResultSet r) throws SQLException {
+		if(r == null){
+			System.out.println("r is null");
+			return;
+		}
 		model.setRowCount(0);
 		String[] ids = {"ISBN", "Title", "Publisher", "Publication Year","Category",  "Selling Price", "Quantity", "Min Quantity"};
 		model.setColumnIdentifiers(ids);
 		Object[] data = new Object[8];
-		data[0] = "1234";
-		data[1] = "Harry Potter";
-		data[2] = "Publisher";
-		data[3] = "2020";
-		data[4] = "Novel";
-		data[5] = "$100";
-		data[6] = "2";
-		data[7] = "1";
+		if(r.next()){
+			for(int i = 0; i < 8; i++){
+				data[i] = r.getString(ids[i]);
+			}
+		}
 		model.addRow(data);
-		
 	}
 
 }
