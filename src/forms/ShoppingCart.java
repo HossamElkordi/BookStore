@@ -1,6 +1,7 @@
 package forms;
 
 import userOperations.Book;
+import userOperations.LogIn;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -30,7 +31,7 @@ public class ShoppingCart extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ShoppingCart(JFrame parent, userOperations.ShoppingCart MyCart) {
+	public ShoppingCart(JFrame parent, userOperations.ShoppingCart MyCart, LogIn User) {
 		this.MyCart = MyCart;
 		thisFrame = this;
 		setVisible(true);
@@ -63,7 +64,7 @@ public class ShoppingCart extends JFrame {
 		JButton btnCheckout = new JButton("Checkout");
 		btnCheckout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyCart.Checkout();
+				MyCart.Checkout(User);
 			}
 		});
 		btnCheckout.setBounds(500, 340, 186, 32);

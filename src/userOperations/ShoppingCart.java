@@ -20,7 +20,7 @@ public class ShoppingCart {
         return Cart;
     }
 
-    public void Checkout()
+    public void Checkout(LogIn User)
     {
         Operation operation = new ModifyExistingBook();
         for(Book book: this.Cart)
