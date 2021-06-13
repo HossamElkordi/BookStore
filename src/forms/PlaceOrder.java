@@ -115,11 +115,7 @@ public class PlaceOrder extends JFrame {
 				ArrayList<String> list = new ArrayList<>();
 				list.add(ISBN_fromInput);
 				list.add(textField_1.getText());
-				try {
-					bo.execute(list);
-				} catch (SQLException throwables) {
-					throwables.printStackTrace();
-				}
+				bo.execute(list);
 			}
 		});
 		btnNewButton_1.setBounds(417, 239, 134, 32);

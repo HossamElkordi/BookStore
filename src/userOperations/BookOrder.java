@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class BookOrder implements  Operation{
     @Override
-    public ResultSet execute(ArrayList<String> input) throws SQLException {
+    public ResultSet execute(ArrayList<String> input) {
         ResultSet resultSet = null;
         try {
             Connection connection = DriverManager.getConnection(dbLink, user, password);
