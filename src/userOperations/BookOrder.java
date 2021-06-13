@@ -9,7 +9,7 @@ public class BookOrder implements  Operation{
         ResultSet resultSet = null;
         try {
             Connection connection = DriverManager.getConnection(dbLink, user, password);
-            String stat = "Insert into Orders values ( " + input.get(0) + ", " + input.get(1)+" )";
+            String stat = "Insert into Orders values ( "+"'" + input.get(0) + "'" +", "+"'" + input.get(1)+"'"+" )";
             Statement statement =  connection.prepareStatement(stat, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             resultSet = statement.executeQuery(stat);
             }
