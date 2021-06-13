@@ -59,7 +59,7 @@ public class Customer extends JFrame {
 		btnStartShopping.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new Shopping(thisFrame,MyCart);
+				new Shopping(thisFrame,MyCart,User);
 			}
 		});
 		btnStartShopping.setBounds(282, 125, 186, 32);

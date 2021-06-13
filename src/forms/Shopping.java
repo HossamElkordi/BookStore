@@ -33,7 +33,7 @@ public class Shopping extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Shopping(JFrame parent, userOperations.ShoppingCart MyCart) {
+	public Shopping(JFrame parent, userOperations.ShoppingCart MyCart,LogIn User) {
 		
 		thisFrame = this;
 		control = Controller.getControl();
@@ -170,7 +170,7 @@ public class Shopping extends JFrame {
 		btnViewCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new ShoppingCart(thisFrame,MyCart);
+				new ShoppingCart(thisFrame,MyCart,User);
 			}
 		});
 		getContentPane().add(btnViewCart);
