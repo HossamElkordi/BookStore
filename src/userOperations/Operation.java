@@ -6,6 +6,6 @@ import java.util.ArrayList;
 public interface Operation {
     final String dbLink = "jdbc:mysql://127.0.0.1:3306/BookStore";
     final String user = "root";
-    final String password = "input passwrod here";
+    final String password = "iamwating4uM.S";
     ResultSet execute(ArrayList<String> input) throws SQLException;
 }

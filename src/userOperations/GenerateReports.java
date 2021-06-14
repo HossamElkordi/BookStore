@@ -45,13 +45,16 @@ public class GenerateReports implements  Operation{
         assert (r2 != null);
         assert (r3 != null);
 
-        File file = new File("Report.txt");
-        FileWriter fw = new FileWriter(file);
+        //File file = new File("Report.txt");
+        FileWriter fw = new FileWriter("report.txt",false);
         PrintWriter pw = new PrintWriter(fw);
 
         pw.write("Total sales for books in the previous month:- \n");
         r1.next();
-        pw.write("-"+r1.getString(0) +"\n");
+        String s;
+        s=r1.getString("count(*)");
+        System.out.println("  ");
+        pw.write("-"+s +"\n");
         pw.write("*******************************************\n");
 
         int numOfCustomers = 5;
@@ -60,18 +63,21 @@ public class GenerateReports implements  Operation{
         pw.write("The top 5 customers who purchase the most purchase amount in descending order for the last three months:- \n");
 
         while(r2.next() && numOfCustomers != 0){
-            pw.write("-"+ r2.getString(0)+", "+r2.getString(1)+"\n");
+            s=r2.getString("UserName");
+            pw.write("-"+ s+", "+r2.getString(1)+"\n");
             numOfCustomers--;
         }
         pw.write("*******************************************\n");
 
         pw.write("The top 10 selling books for the last three months:- \n");
         while(r3.next() && numOfBooks != 0){
-            pw.write("-"+ r3.getString(0)+", "+r3.getString(1)+", "+r3.getString(2)+"\n");
+            s=r3.getString("ISBN");
+            pw.write("-"+s +", "+r3.getString("Title")+", "+r3.getString("count(*)")+"\n");
             numOfBooks--;
         }
         pw.write("*******************************************\n");
         pw.close();
+        fw.close();
     }
 
 }

@@ -98,14 +98,14 @@ public class ShoppingCart extends JFrame {
 	{
 		long total = 0;
 		for(Book book: MyCart.getCart())
-			total+=book.getQuantity()*Integer.parseInt(book.getPrice());
+			total+=book.getQuantity()*Double.valueOf(book.getPrice());
 		return String.valueOf(total);
 	}
 	private void setTableModel(ResultSet rs) {
 		model.setRowCount(0);
 		String[] ids = {"Title", "Publication Year","Category",  "Price", "Quantity", "Total Price"};
 		model.setColumnIdentifiers(ids);
-		
+		System.out.println(MyCart.getCart().size());
 		for (Book book:MyCart.getCart()) {
 			Object[] data = new Object[6];
 			data[0] = book.getTitle();
@@ -113,7 +113,7 @@ public class ShoppingCart extends JFrame {
 			data[2] = book.getCategory();
 			data[3] = book.getPrice();
 			data[4] = book.getQuantity();
-			data[5] = Integer.parseInt(book.getCategory())*book.getQuantity();
+			data[5] = Double.valueOf(book.getPrice())*book.getQuantity();
 			model.addRow(data);
 		}
 	}
