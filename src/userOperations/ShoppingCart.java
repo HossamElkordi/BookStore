@@ -1,6 +1,5 @@
 package userOperations;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +24,10 @@ public class ShoppingCart {
 
     public void Checkout(LogIn User)
     {
-        Operation operation = new ModifyExistingBook();
 
         Sales sa = new Sales();
-
+        Operation operation = new Update();
+        
         for(Book book: this.Cart)
         {
             ArrayList<String> temp = new ArrayList<>();

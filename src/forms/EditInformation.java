@@ -1,10 +1,8 @@
 package forms;
 
 import userOperations.LogIn;
-import userOperations.ModifyExistingBook;
+import userOperations.Update;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -130,7 +128,7 @@ public class EditInformation extends JFrame {
 		contentPane.add(btnSave);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ModifyExistingBook modified = new ModifyExistingBook();
+				Update modified = new Update();
 				if(textPassword.getText().compareTo(User.getPassword()) != 0){
 					ArrayList<String> list = new ArrayList<>(Arrays.asList("User",
 							"Password=" + textPassword.getText(),

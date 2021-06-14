@@ -2,7 +2,6 @@ package userOperations;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.chrono.IsoChronology;
 import java.util.ArrayList;
 
 public class LogIn{
@@ -16,7 +15,7 @@ public class LogIn{
     private String UserType;
 
     public boolean CheckCredentials(String UserName, String Password) throws SQLException {
-        Operation operation = new SearchForBooks();
+        Operation operation = new Select();
         ArrayList<String> arguments = new ArrayList<>();
         arguments.add("*");
         arguments.add("USER");
@@ -46,7 +45,7 @@ public class LogIn{
     }
 
     public void Register(String text, String textPasswordText, String textFirstnameText, String textLastnameText, String textEmailText, String textPhoneText, String textAddressText) throws SQLException {
-        Operation operation = new AddNewBooks();
+        Operation operation = new Insert();
         ArrayList<String> arguments = new ArrayList<>();
         arguments.add("User");
         arguments.add(text);

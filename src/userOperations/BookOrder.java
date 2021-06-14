@@ -1,5 +1,6 @@
 package userOperations;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ public class BookOrder implements  Operation{
             statement.executeUpdate(stat);
             }
         catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
         return null;

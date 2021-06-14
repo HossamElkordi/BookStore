@@ -1,7 +1,7 @@
 package forms;
 
 import userOperations.*;
-import userOperations.SearchForBooks;
+import userOperations.Select;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -55,14 +55,14 @@ public class Controller {
         ResultSet rs = null;
         switch (type) {
             case "search" -> {
-                op = new SearchForBooks();
+                op = new Select();
                 querry.add("*");
                 querry.add(table);
                 if (!cond.isEmpty()) querry.add(cond);
                 rs = op.execute(querry);
             }
             case "insert" -> {
-                op = new AddNewBooks();
+                op = new Insert();
                 querry.add(table);
                 for (String s : attr) querry.add(s);
                 rs = op.execute(querry);
@@ -75,14 +75,14 @@ public class Controller {
                 }
             }
             case "update" -> {
-                op = new ModifyExistingBook();
+                op = new Update();
                 querry.add(table);
                 querry.add(attr.get(0));
                 querry.add(cond);
                 op.execute(querry);
             }
             case "delete" -> {
-                op = new ConfirmOrders();
+                op = new Delete();
                 querry.add(table);
                 if (!cond.isEmpty()) querry.add(cond);
                 rs = op.execute(querry);
