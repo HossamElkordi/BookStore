@@ -3,14 +3,8 @@ package forms;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -127,9 +121,11 @@ public class AddNewBook extends JFrame {
 		lblNewLabel_1.setBounds(436, 26, 101, 14);
 		getContentPane().add(lblNewLabel_1);
 
-		JLabel lblNewLabel_2 = new JLabel("");
+		JTextArea lblNewLabel_2 = new JTextArea();
 		lblNewLabel_2.setBounds(522, 26, 191, 109);
+		lblNewLabel_2.setEditable(false);
 		getContentPane().add(lblNewLabel_2);
+
 
 		textField_7 = new JTextField();
 		textField_7.setBounds(555, 148, 158, 20);
@@ -144,7 +140,7 @@ public class AddNewBook extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				control.addAuthor("'" + textField_7.getText() + "'");
-				lblNewLabel_1_1.setText(lblNewLabel_1_1.getText() + textField_7.getText());
+				lblNewLabel_2.setText(lblNewLabel_2.getText() + textField_7.getText()+"\n");
 				textField_7.setText("");
 			}
 		});
