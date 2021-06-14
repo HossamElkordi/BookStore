@@ -1,5 +1,6 @@
 package userOperations;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ public class Insert implements Operation{
             statement.executeUpdate(stat);
 
         }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
         return null;

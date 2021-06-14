@@ -1,5 +1,6 @@
 package userOperations;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,6 +24,7 @@ public class Select implements Operation{
             Statement statement =  connection.prepareStatement(stat, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             resultSet = statement.executeQuery(stat);
         }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
         return resultSet;

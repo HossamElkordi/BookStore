@@ -1,5 +1,6 @@
 package userOperations;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ public class PromoteUser implements  Operation{
                 statement.executeUpdate(stat);
             }
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(null, throwables.getMessage());
             throwables.printStackTrace();
         }
         return null;
