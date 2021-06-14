@@ -19,7 +19,7 @@ public class LogIn{
         ArrayList<String> arguments = new ArrayList<>();
         arguments.add("*");
         arguments.add("USER");
-        arguments.add("UserName="+UserName+" and Password="+Password);
+        arguments.add("UserName='"+UserName+"' and Password='"+Password+"'");
         ResultSet UserInfo = operation.execute(arguments);
         int size = 0;
         try{
@@ -48,13 +48,14 @@ public class LogIn{
         Operation operation = new Insert();
         ArrayList<String> arguments = new ArrayList<>();
         arguments.add("User");
-        arguments.add(text);
-        arguments.add(textPasswordText);
-        arguments.add(textLastnameText);
-        arguments.add(textFirstnameText);
-        arguments.add(textEmailText);
-        arguments.add(textPhoneText);
-        arguments.add(textAddressText);
+        arguments.add("'"+text+"'");
+        arguments.add("'"+textPasswordText+"'");
+        arguments.add("'"+textLastnameText+"'");
+        arguments.add("'"+textFirstnameText+"'");
+        arguments.add("'"+textEmailText+"'");
+        arguments.add("'"+textPhoneText+"'");
+        arguments.add("'"+textAddressText+"'");
+        arguments.add("'customer'");
         operation.execute(arguments);
     }
 
