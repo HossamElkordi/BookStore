@@ -131,7 +131,10 @@ public class SignUp extends JFrame {
 				}
 				try {
 					if(Person.CheckCredentials(txtUsername.getText(),textPassword.getText()))
+					{
+						setVisible(false);
 						new Customer(Person,new ShoppingCart());
+					}
 				} catch (SQLException throwables) {
 					throwables.printStackTrace();
 				}
