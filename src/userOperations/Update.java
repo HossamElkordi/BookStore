@@ -1,24 +1,21 @@
 package userOperations;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
-public class ConfirmOrders implements Operation{
+public class Update implements Operation{
 
     public ResultSet execute(ArrayList<String> input) {
         try {
             Connection connection = DriverManager.getConnection(dbLink, user, password);
-            String stat = "delete from " + input.get(0);
-            if(input.size() > 1){
-                stat += (" where " + input.get(1));
+            String stat = "update " + input.get(0) + " set " + input.get(1);
+            if(input.size() > 2){
+                stat += (" where " + input.get(2));
             }
             Statement statement =  connection.prepareStatement(stat, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             statement.executeUpdate(stat);
-        }catch (Exception e){
-            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return null;
     }

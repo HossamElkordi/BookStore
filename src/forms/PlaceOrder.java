@@ -1,14 +1,11 @@
 package forms;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,14 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import userOperations.SearchForBooks;
+import userOperations.Select;
 import userOperations.BookOrder;
-
-import basicInterfaces.UserOperationInterface;
 
 public class PlaceOrder extends JFrame {
 
@@ -34,7 +28,7 @@ public class PlaceOrder extends JFrame {
 	private JTable table;
 	private DefaultTableModel model;
 	private JTextField textField_1;
-	private SearchForBooks sb;
+	private Select sb;
 	private ResultSet rs;
 	private String ISBN_fromInput;
 	private BookOrder bo;
@@ -77,7 +71,7 @@ public class PlaceOrder extends JFrame {
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sb = new SearchForBooks();
+				sb = new Select();
 				ArrayList<String> list = new ArrayList<>();
 				list.add("*");
 				list.add("Book");

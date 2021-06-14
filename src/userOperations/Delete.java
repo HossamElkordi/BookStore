@@ -6,20 +6,17 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class AddNewBooks implements Operation{
+public class Delete implements Operation{
 
     public ResultSet execute(ArrayList<String> input) {
-        try{
+        try {
             Connection connection = DriverManager.getConnection(dbLink, user, password);
-            String stat = "insert into " + input.get(0) + " values(" + input.get(1);
-
-            for(int i = 2; i < input.size(); ++i){
-                stat += ("," + input.get(i));
+            String stat = "delete from " + input.get(0);
+            if(input.size() > 1){
+                stat += (" where " + input.get(1));
             }
-            stat += ")";
             Statement statement =  connection.prepareStatement(stat, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             statement.executeUpdate(stat);
-
         }catch (Exception e){
             e.printStackTrace();
         }

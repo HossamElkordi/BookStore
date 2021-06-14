@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class SearchForBooks implements Operation{
+public class Select implements Operation{
 
     public ResultSet execute(ArrayList<String> input) {
         ResultSet resultSet = null;
