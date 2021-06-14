@@ -27,7 +27,7 @@ public class ShoppingCart {
 
         Sales sa = new Sales();
         Operation operation = new Update();
-        
+
         for(Book book: this.Cart)
         {
             ArrayList<String> temp = new ArrayList<>();
