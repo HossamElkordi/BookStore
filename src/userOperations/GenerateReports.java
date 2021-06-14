@@ -1,6 +1,10 @@
 package userOperations;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -27,7 +31,47 @@ public class GenerateReports implements  Operation{
         String stat3 = "select ISBN, Title,count(*) from sales natural join book where date > now() - interval 3 month group by ISBN order by count(*) desc";
         Statement statement3 = connection.prepareStatement(stat3, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         rs3 = statement3.executeQuery(stat3);
+        try {
+            writeReport(rs1, rs2, rs3);
+        }catch (Exception e){
+            System.out.println("Could not write to file.");
+        }
 
         return null;
     }
+
+    private void writeReport(ResultSet r1, ResultSet r2, ResultSet r3) throws IOException, SQLException {
+        assert (r1 != null);
+        assert (r2 != null);
+        assert (r3 != null);
+
+        File file = new File("Report.txt");
+        FileWriter fw = new FileWriter(file);
+        PrintWriter pw = new PrintWriter(fw);
+
+        pw.write("Total sales for books in the previous month:- \n");
+        r1.next();
+        pw.write("-"+r1.getString(0) +"\n");
+        pw.write("*******************************************\n");
+
+        int numOfCustomers = 5;
+        int numOfBooks = 10;
+
+        pw.write("The top 5 customers who purchase the most purchase amount in descending order for the last three months:- \n");
+
+        while(r2.next() && numOfCustomers != 0){
+            pw.write("-"+ r2.getString(0)+", "+r2.getString(1)+"\n");
+            numOfCustomers--;
+        }
+        pw.write("*******************************************\n");
+
+        pw.write("The top 10 selling books for the last three months:- \n");
+        while(r3.next() && numOfBooks != 0){
+            pw.write("-"+ r3.getString(0)+", "+r3.getString(1)+", "+r3.getString(2)+"\n");
+            numOfBooks--;
+        }
+        pw.write("*******************************************\n");
+        pw.close();
+    }
+
 }
