@@ -65,7 +65,11 @@ public class ShoppingCart extends JFrame {
 		JButton btnCheckout = new JButton("Checkout");
 		btnCheckout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 					MyCart.Checkout(User);
+				} catch (SQLException throwables) {
+					throwables.printStackTrace();
+				}
 			}
 		});
 		btnCheckout.setBounds(500, 340, 186, 32);

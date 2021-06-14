@@ -1,5 +1,6 @@
 package userOperations;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,7 @@ public class ShoppingCart {
     }
 
 
-    public void Checkout(LogIn User)
-    {
+    public void Checkout(LogIn User) throws SQLException {
 
         Sales sa = new Sales();
         Operation operation = new Update();
@@ -40,7 +40,7 @@ public class ShoppingCart {
             list.add(User.getUserName());
             list.add(book.getISBN());
             list.add(java.time.LocalDate.now().toString());
-            list.add(book.getPrice());
+            list.add(Double.toString(Double.parseDouble(book.getPrice())* book.getQuantity()));
             sa.execute(list);
         }
         clear();
