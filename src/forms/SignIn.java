@@ -75,7 +75,8 @@ public class SignIn extends JFrame {
 				try {
 					if(Person.CheckCredentials(textField.getText(),textField_1.getText()))
 					{
-						if(Person.getUserType().equals("Customer"))
+						setVisible(false);
+						if(Person.getUserType().equals("'customer'"))
 							new Customer(Person,new ShoppingCart());
 						else
 							new Manager(Person,new ShoppingCart());
