@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class UserOperationInterface extends JFrame {
+public class  UserOperationInterface extends JFrame {
 
 	private JFrame thisFram;
 	/**

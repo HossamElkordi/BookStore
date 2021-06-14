@@ -10,18 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 
 public class SignIn extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JPasswordField textField_1;
 	private JFrame thisFrame;
 
 	/**
@@ -30,7 +26,7 @@ public class SignIn extends JFrame {
 	public SignIn(JFrame parent) {
 		
 		thisFrame = this;
-		setVisible(true);
+
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SignIn.class.getResource("/Icon/logo.jpg")));
 		setTitle("Sign In");
@@ -52,7 +48,7 @@ public class SignIn extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
+		textField_1 = new JPasswordField();
 		textField_1.setBounds(250, 130, 200, 25);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
@@ -70,23 +66,26 @@ public class SignIn extends JFrame {
 		contentPane.add(btnSignIn);
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+
 				LogIn Person = new LogIn();
 				try {
 					if(Person.CheckCredentials(textField.getText(),textField_1.getText()))
 					{
 						setVisible(false);
-						if(Person.getUserType().equals("'customer'"))
+						if(Person.getUserType().equals("Customer"))
 							new Customer(Person,new ShoppingCart());
 						else
 							new Manager(Person,new ShoppingCart());
+					}
+					else{
+						JOptionPane.showMessageDialog(null,"Wrong Username or Password");
 					}
 				} catch (SQLException throwables) {
 					throwables.printStackTrace();
 				}
 			}
 		});
-		
-		
+
+		setVisible(true);
 	}
 }

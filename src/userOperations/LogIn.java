@@ -21,6 +21,7 @@ public class LogIn{
         arguments.add("USER");
         arguments.add("UserName='"+UserName+"' and Password='"+Password+"'");
         ResultSet UserInfo = operation.execute(arguments);
+
         int size = 0;
         try{
             while(UserInfo.next())

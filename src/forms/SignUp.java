@@ -10,18 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class SignUp extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
-	private JTextField textPassword;
+	private JPasswordField textPassword;
 	private JTextField textFirstname;
 	private JTextField textLastname;
 	private JTextField textEmail;
@@ -67,7 +63,7 @@ public class SignUp extends JFrame {
 		lblPassword.setBounds(140, 72, 100, 25);
 		contentPane.add(lblPassword);
 		
-		textPassword = new JTextField();
+		textPassword = new JPasswordField();
 		textPassword.setBounds(250, 72, 200, 25);
 		contentPane.add(textPassword);
 		textPassword.setColumns(10);

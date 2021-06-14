@@ -30,7 +30,7 @@ public class Customer extends JFrame {
 			public void run() {
 				try {
 					Customer frame = new Customer(new LogIn(),new ShoppingCart());
-					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -83,6 +83,7 @@ public class Customer extends JFrame {
 			}
 		});
 		btnLogout.setBounds(282, 225, 186, 32);
-		contentPane.add(btnLogout);
+
+		this.setVisible(true);
 	}
 }

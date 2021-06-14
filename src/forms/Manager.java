@@ -30,7 +30,7 @@ public class Manager extends JFrame {
 			public void run() {
 				try {
 					Manager frame = new Manager(new LogIn(),new ShoppingCart());
-					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -146,6 +146,7 @@ public class Manager extends JFrame {
 		});
 		btnLogout.setBounds(267, 300, 214, 23);
 		contentPane.add(btnLogout);
+		setVisible(true);
 	}
 
 }
